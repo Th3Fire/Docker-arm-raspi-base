@@ -1,4 +1,4 @@
-FROM armhfbuild/debian:latest
+FROM resin/rpi-raspbian:jessie
 MAINTAINER WUTTINAN SUT <wuttinan.wch@gmail.com>
 RUN apt-get -y update \
 	&& apt-get install -y git python-pip \
