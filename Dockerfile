@@ -1,14 +1,14 @@
 FROM resin/rpi-raspbian:jessie
 MAINTAINER WUTTINAN SUT <wuttinan.wch@gmail.com>
 RUN apt-get -y update \
-	&& apt-get install -y git python-pip \
+	&& apt-get install -y git python-pip screen\
 	&& pip install -U platformio
 RUN mkdir -p /root/nodemcu
 RUN /bin/bash -c 'echo -e "y\n" | platformio init -d /root/nodemcu --board nodemcuv2'
 ADD code/blink.ino /root/nodemcu/src
+ADD run.sh /root/nodemcu
 RUN rm /root/nodemcu/platformio.ini
 ADD env/platformio.ini /root/nodemcu
 WORKDIR /root/nodemcu
 RUN /bin/bash -c 'echo -e "y\n" | platformio run'
-CMD platformio run -t upload
-
+CMD ["./run.sh"]
