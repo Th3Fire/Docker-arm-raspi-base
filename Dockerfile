@@ -7,7 +7,7 @@ RUN mkdir -p /root/nodemcu
 RUN /bin/bash -c 'echo -e "y\n" | platformio init -d /root/nodemcu --board nodemcuv2'
 ADD code/blink.ino /root/nodemcu/src
 ADD run.sh /root/nodemcu
-RUN rm /root/nodemcu/platformio.ini
+ADD log.sh /root/nodemcu
 ADD env/platformio.ini /root/nodemcu
 WORKDIR /root/nodemcu
 RUN /bin/bash -c 'echo -e "y\n" | platformio run'
